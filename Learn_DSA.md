@@ -455,6 +455,181 @@ class Solution {
 }
 ```
 
+### Medium
+
+#### 1. Two Sum Problem
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer,Integer> mp=new HashMap<>();
+
+        for(int i=0;i<nums.length;i++){
+
+            if(mp.containsKey(target-nums[i])){
+                return new int[]{mp.get(target - nums[i]), i};
+            }
+            mp.put(nums[i],i);
+        }
+        return new int[]{};
+    }
+}
+```
+#### Here If array is sorted then we can go with Two Pointers approach
+```java
+class Solution {
+public int[] twoSum(int[] nums, int target) {
+    int left = 0, right = nums.length - 1;
+    while (left < right) {
+        int sum = nums[left] + nums[right];
+        if (sum == target) {
+            return new int[] { left, right };
+        } else if (sum < target) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+    return new int[]{};
+}
+```
+
+#### 2. Sort an array of 0’s 1’s and 2’s
+
+#### Dutch National Flag Algorithm
+
+```java
+class Solution {
+    public void sortColors(int[] nums) {
+
+        int low=0;
+        int mid=0;
+        int high=nums.length-1;
+
+        while(mid<=high){
+            if(nums[mid]==0){
+                int temp=nums[mid];
+                nums[mid]=nums[low];
+                nums[low]=temp;
+                mid++;
+                low++;
+            }else if(nums[mid]==1){
+                mid++;
+            }else{
+                int temp=nums[mid];
+                nums[mid]=nums[high];
+                nums[high]=temp;
+                high--;
+            }
+        }
+
+        
+    }
+}
+```
+
+#### 3. Majority Element 
+*Element that appears more than 1/2 times in an array*
+
+#### Moore's Voting Algorithm
+```java
+class Solution
+{
+    static int majorityElement(int arr[], int size)
+    {
+        // your code here
+        if(size==1)
+            return arr[0];
+        int candidate = arr[0];
+        int count = 1;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] == candidate) {
+                count++;
+            } else {
+                count--;
+            }
+        if (count == 0) {
+            candidate = arr[i];Majority Element
+            count = 1;
+        }
+    }
+    // check if the candidate is a majority element
+    count = 0;
+    for (int i : arr) {
+        if (i == candidate) {
+            count++;
+        }
+    }
+    if (count > arr.length / 2) {
+        return candidate;
+    } else {
+        return -1;
+    }
+
+    }
+}
+```
+#### 4. Kadane's Algorithm
+*find the sum of contiguous subarray with maximum sum*
+```java
+class Solution{
+    long maxSubarraySum(int arr[], int n){
+        // Your code here
+        long maxSum=0;
+        long currSum=0;
+        long maxEle=Integer.MIN_VALUE;
+        
+        for(int i=0;i<n;i++){
+            if(currSum<0){
+                currSum=0;
+            }
+            currSum+=arr[i];
+            maxSum=Math.max(maxSum,currSum);
+        }
+        
+        return maxSum;
+    }
+    
+}
+```
+#### 5. Max sum in sub-arrays of K size
+```java
+class Solution {
+    
+    public static long pairWithMaxSum(long arr[], long N,long k)
+    {
+        // Your code goes here
+        
+        long sum=0;
+        long maxSum=0;
+        int start=0;
+        for(int i=0;i<N;i++){
+            sum+=arr[i];
+            if(i>k){
+                sum-=arr[start];
+                start++;
+            }
+            maxSum=Math.max(maxSum,sum);
+        }
+        return maxSum;
+    }
+}
+```
+
+#### 6. Stock buy and sell
+```java
+class Solution {
+    public void stockBuySell(int[] price, int n) {
+        // code here
+        int buy=0;
+        int sell=0;
+        for(int i:price){
+            buy=Math.min(buy,i);
+            sell=Math.max(sell,i-buy);
+        }
+    }
+}
+```
+
 
 
 
