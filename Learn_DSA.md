@@ -4,7 +4,9 @@
 
 
 ## Arrays
-### Easy
+* [Easy](#easy)
+* [Medium](#medium)
+### [Easy](#easy)
 
 #### 1. Largest Element in Array
 
@@ -455,7 +457,7 @@ class Solution {
 }
 ```
 
-### Medium
+### [Medium](#medium)
 
 #### 1. Two Sum Problem
 ```java
